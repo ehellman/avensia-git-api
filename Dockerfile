@@ -1,9 +1,10 @@
-FROM node:16-alpine as base
+FROM node:16 as base
 
-WORKDIR $NODE_WORKDIR
-#COPY ./app/package*.json $NODE_WORKDIR
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
+COPY ./api/package*.json /home/node/app
 RUN npm i
-#COPY ./app $NODE_WORKDIR
+COPY ./api $NODE_WORKDIR
 
 FROM base as production
 ENV NODE_PATH=./build
