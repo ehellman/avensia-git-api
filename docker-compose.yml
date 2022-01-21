@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  avensia_github_scraper:
+    env_file:
+      - dev.env
+    container_name: avensia_github_scraper
+    image: node:16-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    #working_dir: $NODE_WORKDIR
+    environment:
+      - NODE_ENV=$NODE_DOCKER_ENV
+    #volumes:
+    # - ./app:$NODE_WORKDIR
+    expose:
+      - $NODE_PORT
+    ports:
+      - $NODE_PORT:$NODE_PORT
+    command: npm run dev

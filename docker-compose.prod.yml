@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  avensia_github_scraper:
+    build:
+      target: production
+    command: node build/index.js
